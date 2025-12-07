@@ -6,8 +6,8 @@ namespace Players.Movement
     [RequireComponent(typeof(CapsuleCollider2D))]
     public class Jumper : MonoBehaviour
     {
-        [Header("Сила прыжка")]
-        [SerializeField] private float _force = 10f;
+        [Header("Настройка прыжка")]
+        [SerializeField] private float _force = 6f;
         
         [Header("Gizmo и Overlap")]
         [SerializeField] private LayerMask _ground;

@@ -7,13 +7,13 @@ namespace Coins
     {
         [SerializeField] private Coin _prefab;
         [SerializeField] private Transform[] _points;
-        [SerializeField] private float _delaySpawn = 2f;
+        [SerializeField] private float _delay = 2f;
         
         private WaitForSeconds _wait;
 
         private void Awake()
         {
-            _wait = new WaitForSeconds(_delaySpawn);
+            _wait = new WaitForSeconds(_delay);
         }
         
         private void Start()

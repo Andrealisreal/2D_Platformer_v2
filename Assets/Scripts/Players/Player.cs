@@ -30,11 +30,11 @@ namespace Players
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent<Coin>(out var coin) == false)
+            if (other.gameObject.TryGetComponent<Coin>(out var coin) == false) 
                 return;
             
-            _wallet.AddCoin();
             coin.Collect();
+            _wallet.AddCoin();
         }
 
         private void OnEnable()
