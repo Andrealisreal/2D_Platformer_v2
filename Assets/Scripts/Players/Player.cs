@@ -1,4 +1,6 @@
+using Coins;
 using Players.Input;
+using Players.Inventory;
 using Players.Movement;
 using UnityEngine;
 
@@ -24,6 +26,15 @@ namespace Players
             _jumper = GetComponent<Jumper>();
             _wallet = GetComponent<Wallet>();
             _input = GetComponent<PlayerInput>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.TryGetComponent<Coin>(out var coin) == false)
+                return;
+            
+            _wallet.AddCoin();
+            coin.Collect();
         }
 
         private void OnEnable()

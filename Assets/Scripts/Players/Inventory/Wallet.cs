@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class Wallet : MonoBehaviour
+namespace Players.Inventory
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Wallet : MonoBehaviour
     {
-        
-    }
+        private int _countCoins;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void AddCoin()
+        {
+            _countCoins++;
+            Debug.Log($"Монета собрана. Количество монет = {_countCoins}");
+        }
     }
 }
