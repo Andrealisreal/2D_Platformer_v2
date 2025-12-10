@@ -1,10 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
-public class Death
+public class Death : MonoBehaviour
 {
-    public void Die(GameObject gameObject)
+    public void Die()
     {
-        Debug.Log("Смерть");
-        Object.Destroy(gameObject);
-    }    
+        StartCoroutine(CooldownDie());
+    }
+
+    private IEnumerator CooldownDie()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        Destroy(gameObject);
+    }
 }

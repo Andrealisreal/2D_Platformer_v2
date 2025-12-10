@@ -1,4 +1,3 @@
-using Coins;
 using Players.Animation;
 using Players.Input;
 using Players.Inventory;
@@ -14,9 +13,14 @@ namespace Players
     [RequireComponent(typeof(Jumper))]
     [RequireComponent(typeof(Wallet))]
     [RequireComponent(typeof(PlayerInput))]
+    [RequireComponent(typeof(Death))]
     public class Player : MonoBehaviour
     {
         [SerializeField] private LayerMask _deathZone;
+        
+        [Header("Настройка здоровья")]
+        [SerializeField] private float _currentHealth = 100f;
+        [SerializeField] private float _maxHealth = 100f;
         
         private Mover _mover;
         private Jumper _jumper;
@@ -24,6 +28,8 @@ namespace Players
         private PlayerInput _input;
         private Death _death;
         private PlayerAnimator _animator;
+        private Health _health;
+        private Trigger _trigger;
 
         private void Awake()
         {
@@ -31,44 +37,41 @@ namespace Players
             _jumper = GetComponent<Jumper>();
             _wallet = GetComponent<Wallet>();
             _input = GetComponent<PlayerInput>();
-            _death = new Death();
+            _death = GetComponent<Death>();
             _animator = new PlayerAnimator(GetComponent<Animator>());
+            _health = new Health(_currentHealth, _maxHealth);
+            _trigger = new Trigger(_wallet, _health, _animator, _death);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent<Coin>(out var coin))
-            {
-                coin.Collect();
-                _wallet.AddCoin();
-                
-                return;
-            }
-
-            if (other.TryGetComponent<DeathZone>(out _))
-            {
-                Debug.Log("Попал в зону смерти");
-                _animator.PlayDeath();
-                //_death.Die(this.gameObject);
-            }
+            _trigger.OnEnter(other);
         }
 
         private void OnEnable()
         {
             _input.JumpClicked += _jumper.Jump;
-            _input.JumpClicked += _animator.PlayJump;
+            _input.JumpClicked += JumpAnimation;
         }
 
         private void OnDisable()
         {
             _input.JumpClicked -= _jumper.Jump;
-            _input.JumpClicked -= _animator.PlayJump;
+            _input.JumpClicked -= JumpAnimation;
         }
 
         private void FixedUpdate()
         {
             _mover.Move(_input.Movement);
             _animator.PlayRun(_input.Movement.x);
+        }
+        
+        private void JumpAnimation()
+        {
+            if(_jumper.TryJump() == false)
+                return;
+            
+            _animator.PlayJump();
         }
     }
 }

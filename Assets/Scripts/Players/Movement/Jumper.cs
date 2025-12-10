@@ -16,8 +16,6 @@ namespace Players.Movement
         [SerializeField] private Color _gizmoColor = Color.green;
         
         private Rigidbody2D _rigidbody;
-        
-        private bool _isGrounded;
 
         private void Awake()
         {
@@ -32,12 +30,17 @@ namespace Players.Movement
 
         public void Jump()
         {
-            _isGrounded = Physics2D.OverlapCircle(transform.position + _position, _radius, _ground);
-            
-            if(_isGrounded == false)
+            if(TryJump() == false)
                 return;
 
             _rigidbody.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
+        }
+
+        public bool TryJump()
+        {
+            bool isGrounded = Physics2D.OverlapCircle(transform.position + _position, _radius, _ground);
+            
+            return isGrounded;
         }
     }
 }
