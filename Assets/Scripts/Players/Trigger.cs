@@ -1,4 +1,5 @@
 using Coins;
+using Enemies;
 using Medkits;
 using Players.Animation;
 using Players.Inventory;
@@ -23,11 +24,18 @@ namespace Players
         
         public void OnEnter(Collider2D other)
         {
-            if (TryCollectedCoin(other)) return;
+            if (TryCollectedCoin(other))
+                return;
 
-            if (TryCollectedMedkit(other)) return;
+            if (TryCollectedMedkit(other))
+                return;
 
             EnterDeathZone(other);
+        }
+
+        public void OnTouch(Collision2D other)
+        {
+            EnterEnemy(other);
         }
 
         private void EnterDeathZone(Collider2D other)
@@ -43,8 +51,9 @@ namespace Players
         {
             if (other.TryGetComponent(out Medkit medkit) == false)
                 return false;
-            
-            _health.Heal(medkit.CountHealth);
+
+            medkit.Collected += OnMedkitCollected;
+            medkit.Collect();
 
             return true;
         }
@@ -58,6 +67,22 @@ namespace Players
             _wallet.AddCoin();
                 
             return true;
+        }
+
+        private void EnterEnemy(Collision2D other)
+        {
+            if (other.gameObject.TryGetComponent(out Enemy enemy) == false)
+                return;
+        }
+
+        private void OnMedkitCollected(Medkit medkit)
+        {
+            if ((int)_health.CurrentHealth == (int)_health.MaxHealth)
+                return;
+            
+            _health.Heal(medkit.CountHealth);
+            medkit.Collected -= OnMedkitCollected;
+            Object.Destroy(medkit.gameObject);
         }
     }
 }

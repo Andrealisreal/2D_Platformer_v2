@@ -8,4 +8,9 @@ public static class AnimationParameters
         public static readonly int Run = Animator.StringToHash("Speed");
         public static readonly int Death = Animator.StringToHash("Death");
     }
+
+    public static class Attacks
+    {
+        public static readonly int AnimAttack = Animator.StringToHash("AnimAttack");
+    }
 }

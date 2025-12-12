@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Medkits
@@ -6,7 +7,14 @@ namespace Medkits
     public class Medkit : MonoBehaviour
     {
         [SerializeField] private float _countHealth = 20f;
+
+        public event Action<Medkit> Collected;
         
         public float CountHealth => _countHealth;
+        
+        public void Collect()
+        {
+            Collected?.Invoke(this);
+        }
     }
 }

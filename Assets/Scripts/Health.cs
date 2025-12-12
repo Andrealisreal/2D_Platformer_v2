@@ -1,12 +1,19 @@
+using UnityEngine;
+
 public class Health
 {
     private readonly float _maxHealth;
     private float _currentHealth;
+    private Animator _animator;
     
-    public Health(float currentHealth, float maxHealth)
+    public float CurrentHealth => _currentHealth;
+    public float MaxHealth => _maxHealth;
+    
+    public Health(float currentHealth, Animator animator)
     {
         _currentHealth = currentHealth;
-        _maxHealth = maxHealth;
+        _maxHealth = currentHealth;
+        _animator = animator;
     }
 
     public void Heal(float amount)
@@ -14,11 +21,13 @@ public class Health
         if (_currentHealth + amount >= _maxHealth)
         {
             _currentHealth = _maxHealth;
-
+            Debug.Log($"Здоровье максимальное - {_currentHealth}");
+            
             return;
         }
         
         _currentHealth += amount;
+        Debug.Log($"Была получена аптечка - {amount}. Текущие здоровье - {_currentHealth}");
     }
 
     public void TakeDamage(float amount)
@@ -31,5 +40,7 @@ public class Health
         }
         
         _currentHealth -= amount;
+        Debug.Log($"Был получен урон - {amount}. Текущие здоровье - {_currentHealth}");
+        Debug.Log($"Урон получил - {_animator.gameObject.name}");
     }
 }

@@ -3,6 +3,15 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
+    [SerializeField] private float _delay = 2f;
+
+    private WaitForSeconds _wait;
+
+    private void Awake()
+    {
+        _wait = new WaitForSeconds(_delay);    
+    }
+    
     public void Die()
     {
         StartCoroutine(CooldownDie());
@@ -10,7 +19,7 @@ public class Death : MonoBehaviour
 
     private IEnumerator CooldownDie()
     {
-        yield return new WaitForSeconds(2f);
+        yield return _wait;
         
         Destroy(gameObject);
     }

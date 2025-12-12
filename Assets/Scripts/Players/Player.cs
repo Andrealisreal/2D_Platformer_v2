@@ -20,7 +20,6 @@ namespace Players
         
         [Header("Настройка здоровья")]
         [SerializeField] private float _currentHealth = 100f;
-        [SerializeField] private float _maxHealth = 100f;
         
         private Mover _mover;
         private Jumper _jumper;
@@ -30,16 +29,18 @@ namespace Players
         private PlayerAnimator _animator;
         private Health _health;
         private Trigger _trigger;
+        private Attacker _attacker;
 
         private void Awake()
         {
+            _attacker = GetComponentInChildren<Attacker>(true);
             _mover = GetComponent<Mover>();
             _jumper = GetComponent<Jumper>();
             _wallet = GetComponent<Wallet>();
             _input = GetComponent<PlayerInput>();
             _death = GetComponent<Death>();
             _animator = new PlayerAnimator(GetComponent<Animator>());
-            _health = new Health(_currentHealth, _maxHealth);
+            _health = new Health(_currentHealth, GetComponent<Animator>());
             _trigger = new Trigger(_wallet, _health, _animator, _death);
         }
 
@@ -48,10 +49,16 @@ namespace Players
             _trigger.OnEnter(other);
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            _trigger.OnTouch(other);
+        }
+
         private void OnEnable()
         {
             _input.JumpClicked += _jumper.Jump;
             _input.JumpClicked += JumpAnimation;
+            _input.AttackClicked += _attacker.Attack;
         }
 
         private void OnDisable()
