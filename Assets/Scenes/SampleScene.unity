@@ -10800,6 +10800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Attacker
   _amountDamage: 10
   _delay: 0.5
+  _range: 3
 --- !u!1 &955647705
 GameObject:
   m_ObjectHideFlags: 0
@@ -11352,6 +11353,7 @@ GameObject:
   - component: {fileID: 1528512660}
   - component: {fileID: 1528512662}
   - component: {fileID: 1528512663}
+  - component: {fileID: 1528512664}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -11532,11 +11534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Enemy
   _currentHealth: 50
-  _playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  _radius: 1.15
-  _gizmoColor: {r: 1, g: 0, b: 0.019191265, a: 1}
 --- !u!114 &1528512661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11580,11 +11577,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Movement.Chaser
   _speed: 3
+--- !u!114 &1528512664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528512654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28c0afa044d3e346b9eeb57bba48dd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemies.EnemyDetector
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 8
   _radius: 3
-  _position: {x: 1.81, y: 0, z: 0}
+  _position: {x: 1.96, y: 0, z: 0}
   _gizmoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1583223830
 GameObject:
@@ -11752,6 +11761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Attacker
   _amountDamage: 5
   _delay: 0.5
+  _range: 3
 --- !u!1 &1685690089
 GameObject:
   m_ObjectHideFlags: 0
