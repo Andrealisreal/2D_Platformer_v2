@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8529927117979928866}
   - component: {fileID: 3706012327499976213}
   - component: {fileID: 7841869626355076353}
-  - component: {fileID: 5569678224737090828}
   - component: {fileID: 8167791754576372156}
   - component: {fileID: 7239794777964248480}
   - component: {fileID: 3185724791738092970}
@@ -218,18 +217,6 @@ MonoBehaviour:
   _radius: 0.36
   _position: {x: 0, y: -0.44, z: 0}
   _gizmoColor: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &5569678224737090828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4746590128041253239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5e4fe855cc1314e872d001ad11911e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Wallet
 --- !u!114 &8167791754576372156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +245,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _currentHealth: 100
-  _maxHealth: 100
 --- !u!114 &3185724791738092970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50b2f7cebd015c4182ef0023a9ab014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Death
+  _delay: 2
 --- !u!1 &6933397420923729378
 GameObject:
   m_ObjectHideFlags: 0

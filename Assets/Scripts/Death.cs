@@ -9,18 +9,19 @@ public class Death : MonoBehaviour
 
     private void Awake()
     {
-        _wait = new WaitForSeconds(_delay);    
+        _wait = new WaitForSeconds(_delay);
     }
     
     public void Die()
     {
+        Debug.Log($"Погиб - {gameObject.name}");
         StartCoroutine(CooldownDie());
     }
 
     private IEnumerator CooldownDie()
     {
         yield return _wait;
-        
+
         Destroy(gameObject);
     }
 }

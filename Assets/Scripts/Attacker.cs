@@ -1,5 +1,6 @@
 using System.Collections;
 using Enemies;
+using Players;
 using UnityEngine;
 
 public class Attacker : MonoBehaviour
@@ -9,7 +10,6 @@ public class Attacker : MonoBehaviour
 
     private WaitForSeconds _wait;
     private WaitForFixedUpdate _waitFixed;
-    private Animator _animator;
     private Health _targetHealth;
     
     private bool _isAttacking;
@@ -25,14 +25,14 @@ public class Attacker : MonoBehaviour
     {
         if (other.TryGetComponent(out Enemy enemy))
             _targetHealth = enemy.Health;
+        else if(other.TryGetComponent(out Player player))
+            _targetHealth = player.Health;
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-         if (other.TryGetComponent(out Enemy enemy) == false)
-             return;
-         
-         _targetHealth = null;
+         if (other.TryGetComponent(out Enemy enemy) || other.TryGetComponent(out Player player))
+            _targetHealth = null;
     }
 
     public void Attack()

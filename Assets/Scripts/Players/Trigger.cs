@@ -1,5 +1,4 @@
 using Coins;
-using Enemies;
 using Medkits;
 using Players.Animation;
 using Players.Inventory;
@@ -33,11 +32,6 @@ namespace Players
             EnterDeathZone(other);
         }
 
-        public void OnTouch(Collision2D other)
-        {
-            EnterEnemy(other);
-        }
-
         private void EnterDeathZone(Collider2D other)
         {
             if (other.TryGetComponent(out DeathZone _) == false)
@@ -67,12 +61,6 @@ namespace Players
             _wallet.AddCoin();
                 
             return true;
-        }
-
-        private void EnterEnemy(Collision2D other)
-        {
-            if (other.gameObject.TryGetComponent(out Enemy enemy) == false)
-                return;
         }
 
         private void OnMedkitCollected(Medkit medkit)

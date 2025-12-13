@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Players.Inventory
 {
-    public class Wallet : MonoBehaviour
+    public class Wallet
     {
         private int _countCoins;
 

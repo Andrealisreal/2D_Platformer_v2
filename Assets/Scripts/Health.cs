@@ -1,46 +1,51 @@
+using System;
 using UnityEngine;
 
 public class Health
 {
-    private readonly float _maxHealth;
-    private float _currentHealth;
-    private Animator _animator;
-    
-    public float CurrentHealth => _currentHealth;
-    public float MaxHealth => _maxHealth;
-    
-    public Health(float currentHealth, Animator animator)
+    public event Action OnDeath;
+
+    public float CurrentHealth { get; private set; }
+
+    public float MaxHealth { get; }
+
+    public Health(float currentHealth)
     {
-        _currentHealth = currentHealth;
-        _maxHealth = currentHealth;
-        _animator = animator;
+        CurrentHealth = currentHealth;
+        MaxHealth = currentHealth;
     }
 
     public void Heal(float amount)
     {
-        if (_currentHealth + amount >= _maxHealth)
+        if (CurrentHealth + amount >= MaxHealth)
         {
-            _currentHealth = _maxHealth;
-            Debug.Log($"Здоровье максимальное - {_currentHealth}");
+            CurrentHealth = MaxHealth;
+            Debug.Log($"Здоровье максимальное - {CurrentHealth}");
             
             return;
         }
         
-        _currentHealth += amount;
-        Debug.Log($"Была получена аптечка - {amount}. Текущие здоровье - {_currentHealth}");
+        CurrentHealth += amount;
+        Debug.Log($"Была получена аптечка - {amount}. Текущие здоровье - {CurrentHealth}");
     }
 
     public void TakeDamage(float amount)
     {
-        if (_currentHealth - amount <= 0)
+        if (CurrentHealth - amount <= 0)
         {
-            _currentHealth = 0;
+            CurrentHealth = 0;
+            IsDead();
             
             return;
         }
         
-        _currentHealth -= amount;
-        Debug.Log($"Был получен урон - {amount}. Текущие здоровье - {_currentHealth}");
-        Debug.Log($"Урон получил - {_animator.gameObject.name}");
+        CurrentHealth -= amount;
+        Debug.Log($"Был получен урон - {amount}. Текущие здоровье - {CurrentHealth}");
+    }
+    
+    private void IsDead()
+    {
+        if (CurrentHealth <= 0)
+            OnDeath?.Invoke();
     }
 }

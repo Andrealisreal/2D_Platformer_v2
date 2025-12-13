@@ -11,7 +11,6 @@ namespace Players
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Mover))]
     [RequireComponent(typeof(Jumper))]
-    [RequireComponent(typeof(Wallet))]
     [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(Death))]
     public class Player : MonoBehaviour
@@ -30,17 +29,19 @@ namespace Players
         private Health _health;
         private Trigger _trigger;
         private Attacker _attacker;
+        
+        public Health Health => _health;
 
         private void Awake()
         {
             _attacker = GetComponentInChildren<Attacker>(true);
             _mover = GetComponent<Mover>();
             _jumper = GetComponent<Jumper>();
-            _wallet = GetComponent<Wallet>();
             _input = GetComponent<PlayerInput>();
             _death = GetComponent<Death>();
+            _wallet = new Wallet();
             _animator = new PlayerAnimator(GetComponent<Animator>());
-            _health = new Health(_currentHealth, GetComponent<Animator>());
+            _health = new Health(_currentHealth);
             _trigger = new Trigger(_wallet, _health, _animator, _death);
         }
 
@@ -49,22 +50,20 @@ namespace Players
             _trigger.OnEnter(other);
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            _trigger.OnTouch(other);
-        }
-
         private void OnEnable()
         {
             _input.JumpClicked += _jumper.Jump;
             _input.JumpClicked += JumpAnimation;
             _input.AttackClicked += _attacker.Attack;
+            _health.OnDeath += _death.Die;
         }
 
         private void OnDisable()
         {
             _input.JumpClicked -= _jumper.Jump;
             _input.JumpClicked -= JumpAnimation;
+            _input.AttackClicked -= _attacker.Attack;
+            _health.OnDeath -= _death.Die;
         }
 
         private void FixedUpdate()
