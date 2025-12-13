@@ -6646,7 +6646,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 9
-      m_TileSpriteIndex: 9
+      m_TileSpriteIndex: 10
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10145,10 +10145,10 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: b62db2b0e7231ed45b6897aafc8846af, type: 3}
   - m_RefCount: 66
     m_Data: {fileID: 21300000, guid: e85386d19b6be504ca1fc4d8891b08a8, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: d2471cfb0dd33ee4dba51435c78ce36c, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: d2471cfb0dd33ee4dba51435c78ce36c, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 881
     m_Data:
@@ -11584,7 +11584,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _radius: 3
-  _position: {x: 2.53, y: 0, z: 0}
+  _position: {x: 1.81, y: 0, z: 0}
   _gizmoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &1583223830
 GameObject:
