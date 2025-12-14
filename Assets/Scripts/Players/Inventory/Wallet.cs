@@ -9,7 +9,6 @@ namespace Players.Inventory
         public void AddCoin()
         {
             _countCoins++;
-            Debug.Log($"Монета собрана. Количество монет = {_countCoins}");
         }
     }
 }

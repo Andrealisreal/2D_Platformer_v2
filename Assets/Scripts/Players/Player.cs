@@ -55,7 +55,7 @@ namespace Players
             _input.JumpClicked += _jumper.Jump;
             _input.JumpClicked += JumpAnimation;
             _input.AttackClicked += _attacker.Attack;
-            _health.OnDeath += _death.Die;
+            _health.Died += _death.Die;
         }
 
         private void OnDisable()
@@ -63,7 +63,7 @@ namespace Players
             _input.JumpClicked -= _jumper.Jump;
             _input.JumpClicked -= JumpAnimation;
             _input.AttackClicked -= _attacker.Attack;
-            _health.OnDeath -= _death.Die;
+            _health.Died -= _death.Die;
         }
 
         private void FixedUpdate()

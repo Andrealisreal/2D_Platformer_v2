@@ -14,7 +14,6 @@ public class Death : MonoBehaviour
     
     public void Die()
     {
-        Debug.Log($"Погиб - {gameObject.name}");
         StartCoroutine(CooldownDie());
     }
 

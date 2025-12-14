@@ -45,12 +45,12 @@ namespace Enemies
 
         private void OnEnable()
         {
-            _health.OnDeath += _death.Die;
+            _health.Died += _death.Die;
         }
 
         private void OnDisable()
         {
-            _health.OnDeath -= _death.Die;
+            _health.Died -= _death.Die;
         }
     }
 }
