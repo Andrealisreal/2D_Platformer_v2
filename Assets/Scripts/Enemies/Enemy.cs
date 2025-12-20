@@ -1,11 +1,11 @@
 using Enemies.Movement;
+using UI;
 using UnityEngine;
 
 namespace Enemies
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CapsuleCollider2D))]
-    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Patroller))]
     [RequireComponent(typeof(Death))]
     [RequireComponent(typeof(Chaser))]
@@ -13,6 +13,8 @@ namespace Enemies
     public class Enemy : MonoBehaviour
     {
         [SerializeField] private float _currentHealth = 50f;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private HealthView _healthView;
 
         public Health Health => _health;
 
@@ -31,6 +33,7 @@ namespace Enemies
             _death = GetComponent<Death>();
             _patroller = GetComponent<Patroller>();
             _health = new Health(_currentHealth);
+            _healthView.Initialize(_health);
         }
 
         private void FixedUpdate()

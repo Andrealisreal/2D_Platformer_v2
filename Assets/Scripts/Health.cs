@@ -1,47 +1,37 @@
 using System;
+using UnityEngine;
 
 public class Health
 {
     public event Action Died;
+    public event Action<float, float> Changed;
     
-    public Health(float currentHealth)
+    public Health(float max)
     {
-        CurrentHealth = currentHealth;
-        MaxHealth = currentHealth;
+        Current = max;
+        Max = max;
     }
     
-    public float CurrentHealth { get; private set; }
+    public float Current { get; private set; }
 
-    public float MaxHealth { get; }
+    public float Max { get; }
 
     public void Heal(float amount)
     {
-        if (CurrentHealth + amount >= MaxHealth)
-        {
-            CurrentHealth = MaxHealth;
-            
-            return;
-        }
-        
-        CurrentHealth += amount;
+        Current = Mathf.Min(Current + amount, Max);
+        Changed?.Invoke(Current, Max);
     }
 
     public void TakeDamage(float amount)
     {
-        if (CurrentHealth - amount <= 0)
-        {
-            CurrentHealth = 0;
-            IsDead();
-            
-            return;
-        }
-        
-        CurrentHealth -= amount;
+        Current = Mathf.Max(Current - amount, 0);
+        Changed?.Invoke(Current, Max);
+        IsDead();
     }
     
     private void IsDead()
     {
-        if (CurrentHealth <= 0)
+        if (Current <= 0)
             Died?.Invoke();
     }
 }

@@ -65,7 +65,7 @@ namespace Players
 
         private void OnMedkitCollected(Medkit medkit)
         {
-            if ((int)_health.CurrentHealth == (int)_health.MaxHealth)
+            if ((int)_health.Current == (int)_health.Max)
                 return;
             
             _health.Heal(medkit.CountHealth);

@@ -6,6 +6,7 @@ namespace Enemies.Movement
     public class Chaser : MonoBehaviour
     {
         [SerializeField] private float _speed = 3f;
+        [SerializeField] private Transform _transformView;
         
         private Rigidbody2D _rigidbody;
         private Flipper _flipper;
@@ -21,7 +22,7 @@ namespace Enemies.Movement
         {
             _direction = (target.position - transform.position).normalized;
             
-            _flipper.Turn(transform, _direction);
+            _flipper.Turn(_transformView, _direction);
             _rigidbody.linearVelocity = new Vector2(_direction.x * _speed, _rigidbody.linearVelocity.y);
         }
     }

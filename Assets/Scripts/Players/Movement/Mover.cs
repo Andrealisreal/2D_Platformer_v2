@@ -7,6 +7,7 @@ namespace Players.Movement
     public class Mover : MonoBehaviour
     {
         [SerializeField] private float _speed = 5f;
+        [SerializeField] private Transform _transformView;
         
         private PlayerInput _input;
         private Rigidbody2D _rigidbody;
@@ -21,7 +22,7 @@ namespace Players.Movement
         public void Move(Vector2 direction)
         {
             _rigidbody.linearVelocity = new Vector2(direction.x * _speed, _rigidbody.linearVelocity.y);
-            _flipper.Turn(transform, direction);
+            _flipper.Turn(_transformView, direction);
         }
     }
 }

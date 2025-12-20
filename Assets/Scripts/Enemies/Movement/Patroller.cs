@@ -5,6 +5,8 @@ namespace Enemies.Movement
     [RequireComponent(typeof(Rigidbody2D))]
     public class Patroller : MonoBehaviour
     {
+        [SerializeField] private Transform _transformView;
+        
         [Header("Настройка передвижения")]
         [SerializeField] private float _speed = 5f;
         
@@ -32,7 +34,7 @@ namespace Enemies.Movement
             var direction = (targetPosition - _rigidbody.position).normalized;
 
             _rigidbody.linearVelocity = new Vector2(direction.x * _speed, _rigidbody.linearVelocity.y);
-            _flipper.Turn(transform, direction);
+            _flipper.Turn(_transformView, direction);
 
             if (Vector2.Distance(_rigidbody.position, targetPosition) <= _reachDistance)
                 _currentWaypointIndex = (_currentWaypointIndex + 1) % _points.Length;
