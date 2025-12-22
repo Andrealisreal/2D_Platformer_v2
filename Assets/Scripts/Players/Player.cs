@@ -1,3 +1,4 @@
+using Players.Abilities;
 using Players.Animation;
 using Players.Input;
 using Players.Inventory;
@@ -13,6 +14,7 @@ namespace Players
     [RequireComponent(typeof(Jumper))]
     [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(Death))]
+    [RequireComponent(typeof(PlayerAbility))]
     public class Player : MonoBehaviour
     {
         [SerializeField] private LayerMask _deathZone;
@@ -31,6 +33,7 @@ namespace Players
         private Health _health;
         private Trigger _trigger;
         private Attacker _attacker;
+        private PlayerAbility _ability;
         
         public Health Health => _health;
 
@@ -41,6 +44,7 @@ namespace Players
             _jumper = GetComponent<Jumper>();
             _input = GetComponent<PlayerInput>();
             _death = GetComponent<Death>();
+            _ability = GetComponent<PlayerAbility>();
             _wallet = new Wallet();
             _playerAnimator = new PlayerAnimator(_animator);
             _health = new Health(_currentHealth);
@@ -58,6 +62,7 @@ namespace Players
             _input.JumpClicked += _jumper.Jump;
             _input.JumpClicked += JumpAnimation;
             _input.AttackClicked += _attacker.Attack;
+            _input.VampirismClicked += _ability.ActivateVampirism;
             _health.Died += _death.Die;
         }
 
@@ -66,6 +71,7 @@ namespace Players
             _input.JumpClicked -= _jumper.Jump;
             _input.JumpClicked -= JumpAnimation;
             _input.AttackClicked -= _attacker.Attack;
+            _input.VampirismClicked -= _ability.ActivateVampirism;
             _health.Died -= _death.Die;
         }
 

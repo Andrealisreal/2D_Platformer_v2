@@ -8,6 +8,7 @@ namespace Players.Input
     {
         public event Action JumpClicked;
         public event Action AttackClicked;
+        public event Action VampirismClicked;
 
         public Vector2 Movement => _inputAction.Player.Move.ReadValue<Vector2>();
 
@@ -19,6 +20,7 @@ namespace Players.Input
 
             _inputAction.Player.Jump.performed += Jump;
             _inputAction.Player.Attack.performed += Attack;
+            _inputAction.Player.Abilities.performed += StealHealth;
         }
 
         private void OnEnable()
@@ -39,6 +41,11 @@ namespace Players.Input
         private void Attack(InputAction.CallbackContext context)
         {
             AttackClicked?.Invoke();
+        }
+        
+        private void StealHealth(InputAction.CallbackContext context)
+        {
+            VampirismClicked?.Invoke();
         }
     }
 }
