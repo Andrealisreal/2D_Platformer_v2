@@ -50,6 +50,7 @@ namespace Players
             _health = new Health(_currentHealth);
             _trigger = new Trigger(_wallet, _health, _playerAnimator, _death);
             _healthView.Initialize(_health);
+            _ability.Initialize(_health);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

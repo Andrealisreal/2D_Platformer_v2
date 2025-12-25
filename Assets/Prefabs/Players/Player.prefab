@@ -80,7 +80,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8723813208355677674}
+  - component: {fileID: 8099234999772960631}
   - component: {fileID: 5777945256472958083}
   - component: {fileID: 1076590895393159024}
   - component: {fileID: 5073867808971403241}
@@ -88,7 +88,9 @@ GameObject:
   - component: {fileID: 5315081978813378768}
   - component: {fileID: 2482344626069798457}
   - component: {fileID: 5789039525575581932}
-  - component: {fileID: 2038157510246688959}
+  - component: {fileID: 9178119848131202232}
+  - component: {fileID: 3463171807031779897}
+  - component: {fileID: 2258477639402864607}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -96,16 +98,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8723813208355677674
-Transform:
+--- !u!224 &8099234999772960631
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045983575759572218}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.45, y: -17.22, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -113,6 +114,11 @@ Transform:
   - {fileID: 9216433366014092011}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 31.45, y: -17.22}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &5777945256472958083
 Rigidbody2D:
   serializedVersion: 5
@@ -253,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Death
   _delay: 2
---- !u!114 &2038157510246688959
+--- !u!114 &9178119848131202232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,13 +268,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1045983575759572218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c84281d35baa854dac4209cd2b738b6, type: 3}
+  m_Script: {fileID: 11500000, guid: b2787fb1e1a5f25419561681e479cbd3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Players.Abilities.Vampirism
+  m_EditorClassIdentifier: Assembly-CSharp::Players.Abilities.Vampirisms.VampirismDetector
   _radius: 3
-  _color: {r: 0, g: 0.6792453, b: 0, a: 0.49803922}
-  _aura: {fileID: 7235951587301800118}
-  _countHealth: 2
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &3463171807031779897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045983575759572218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf7a6e3e1f5f794091f016da89d1793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Players.Abilities.Vampirisms.Vampirism
+  _healthStealCount: 2
+  _cooldown: 4
+  _duration: 6
+  _delaySteal: 0.2
+--- !u!114 &2258477639402864607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045983575759572218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec5d0769b66ca24aa1e0928b88d9a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Players.Abilities.PlayerAbility
 --- !u!1 &3175077543092999706
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6461778151858824359}
-  m_Father: {fileID: 8723813208355677674}
+  m_Father: {fileID: 8099234999772960631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7989195731226958886
 SpriteRenderer:
@@ -492,11 +526,11 @@ RectTransform:
   - {fileID: 8183004283482812725}
   - {fileID: 2667413404817397729}
   - {fileID: 8288739447110740331}
-  m_Father: {fileID: 8723813208355677674}
+  m_Father: {fileID: 8099234999772960631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50.05, y: 50}
   m_SizeDelta: {x: 1008, y: 570}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5694594581323411023
@@ -544,7 +578,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6140068976111002572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2667413404817397729}
   - component: {fileID: 2600484910700530960}
+  - component: {fileID: 8425998497074988826}
   m_Layer: 3
   m_Name: Cooldown
   m_TagString: Untagged
@@ -726,6 +761,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8425998497074988826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112486301608144722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c9d77d026b20640b5d3b80c92af880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Players.Abilities.Vampirisms.VampirismView
+  _vampirism: {fileID: 3463171807031779897}
+  _speed: 1
 --- !u!1 &6490728260823548731
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ namespace Enemies
         public bool TryDetect(out Player player)
         {
             _rotatedOffset = transform.rotation * _position;
+            
             var playerCollider = Physics2D.OverlapCircle(transform.position + _rotatedOffset, _radius, _playerLayerMask);
 
             if (playerCollider != null)
@@ -37,6 +38,7 @@ namespace Enemies
             }
 
             player = null;
+            
             return false;
         }
     }
