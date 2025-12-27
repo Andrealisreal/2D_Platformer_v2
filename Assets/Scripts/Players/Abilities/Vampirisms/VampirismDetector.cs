@@ -10,6 +10,8 @@ namespace Players.Abilities.Vampirisms
         
         private Collider2D[] _colliders;
         private ContactFilter2D _contactFilter;
+        
+        public float Radius => _radius;
 
         private void Awake()
         {

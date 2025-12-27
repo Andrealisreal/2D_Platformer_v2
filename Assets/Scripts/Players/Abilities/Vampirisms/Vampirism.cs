@@ -12,16 +12,21 @@ namespace Players.Abilities.Vampirisms
         [SerializeField] private float _duration = 6f;
         [SerializeField] private float _delaySteal = 0.2f;
 
-        public event Action<float, float> Activated;
+        public event Action<float> Activated;
+        public event Action<float> Deactivated;
 
         private VampirismDetector _detector;
         private Health _health;
+        private float _radius;
 
         private bool _isOnActivated;
+        
+        public float Radius => _radius;
 
         private void Awake()
         {
             _detector = GetComponent<VampirismDetector>();
+            _radius = _detector.Radius;
         }
 
         public void Activate(Health health)
@@ -31,14 +36,12 @@ namespace Players.Abilities.Vampirisms
 
             _health = health;
             StartCoroutine(StealRoutine());
-            Activated?.Invoke(_duration, _cooldown);
+            Activated?.Invoke(_duration);
         }
 
         private IEnumerator StealRoutine()
         {
             _isOnActivated = true;
-
-            Debug.Log("Способность активна " + Time.time);
 
             var cooldownSpell = new WaitForSeconds(_cooldown);
             var delaySteal = new WaitForSeconds(_delaySteal);
@@ -66,12 +69,10 @@ namespace Players.Abilities.Vampirisms
                 yield return delaySteal;
             }
 
-            Debug.Log("Начался кулдаун " + Time.time);
-
+            Deactivated?.Invoke(_cooldown);
+            
             yield return cooldownSpell;
             
-            Debug.Log("Конец куладуна " + Time.time);
-
             _isOnActivated = false;
         }
     }
