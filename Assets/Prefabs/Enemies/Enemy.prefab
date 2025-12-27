@@ -458,6 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bed9d73adca01499c94d537cd1c7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.SmoothSliderBar
+  _slider: {fileID: 7628337966547604378}
   _speed: 1
 --- !u!1 &4768186755469888098
 GameObject:
@@ -576,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Movement.Patroller
   _transformView: {fileID: 822901795423289258}
-  _speed: 2
+  _speed: 0
   _points:
   - {fileID: 0}
   - {fileID: 0}
@@ -621,7 +622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a755f8371a4aa4298b79c377f8ad48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Movement.Chaser
-  _speed: 2
+  _speed: 0
   _transformView: {fileID: 822901795423289258}
 --- !u!114 &5980633172750461710
 MonoBehaviour:

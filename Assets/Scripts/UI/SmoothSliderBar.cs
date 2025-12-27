@@ -7,15 +7,10 @@ namespace UI
     [RequireComponent(typeof(Slider))]
     public class SmoothSliderBar : HealthView
     {
+        [SerializeField] private Slider _slider;
         [SerializeField] private float _speed = 1f;
-
-        private Slider _slider;
+        
         private Coroutine _currentCoroutine;
-
-        private void Awake()
-        {
-            _slider = GetComponent<Slider>();
-        }
     
         protected override void OnValueChanged(float current, float max)
         {

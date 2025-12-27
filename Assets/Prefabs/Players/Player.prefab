@@ -774,7 +774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Players.Abilities.Vampirisms.VampirismView
   _vampirism: {fileID: 3463171807031779897}
-  _speed: 1
+  _auraRenderer: {fileID: 0}
+  _target: {fileID: 0}
 --- !u!1 &6490728260823548731
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afdaa1e8f9442af47a68c7f2e97c9f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attacker
-  _amountDamage: 10
+  _amountDamage: 30
   _delay: 0.5
   _range: 3
 --- !u!1 &7081578647078939159
@@ -1194,6 +1195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bed9d73adca01499c94d537cd1c7d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.SmoothSliderBar
+  _slider: {fileID: 2835810359153428894}
   _speed: 1
 --- !u!1 &9066177203907160964
 GameObject:
